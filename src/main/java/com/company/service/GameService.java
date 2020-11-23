@@ -129,8 +129,12 @@ public class GameService {
 
             for(String command : commands){
                 int randomInt = (int) (Math.random() * 100.0);
-                System.out.println(command + randomInt);
-                handleCommand(command + randomInt, player, configuration);
+                String Command = command + randomInt;
+                if(command.equals("exit")){
+                    Command = command;
+                }
+                System.out.println(Command);
+                handleCommand(Command, player, configuration);
             }
         } else { // MANUAL SESSION
             // CREATE SCANNER
