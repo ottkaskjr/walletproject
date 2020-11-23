@@ -37,10 +37,11 @@ public class GameController {
      * while the session is on. The request is passed on to @Service
      *
      * @param username - A RequestParam for username
+     * @param random - when true, creates a session with random transactions, otherwise manual session
      * @return Player - Returns latest player object from db at the end of the session
      */
     // GET PLAYER BY USERNAME AND START GAME SESSION
-    /* localhost:8070/start?username=player1 */
+    /* localhost:8070/start?username=player1?random=true */
     @GetMapping("/start")
     public Player getPlayerByUsername(@RequestParam("username") String username,
                                       @RequestParam("random") boolean random){
@@ -52,6 +53,7 @@ public class GameController {
     /**
      * This method is used to create a new player either by providing a json object or a request parameter.
      * The request is passed on to @Service
+     *
      *
      * @param requestJSON - A json RequestBody for username { "data": "player123" }
      * @param username - ALTERNATIVE RequestParam for browser URL tab. This way requestJSON is ignored

@@ -1,7 +1,7 @@
 version: "2.3"
 services:
   web:
-    image: ottkaskjr/playtech:0
+    image: ottkaskjr/playtech:1
     ports:
       - "8070:8070"
     volumes:
