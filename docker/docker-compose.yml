@@ -1,0 +1,8 @@
+version: "2.3"
+services:
+  web:
+    image: ottkaskjr/playtech:0
+    ports:
+      - "8070:8070"
+    volumes:
+      - ./application.properties:/app/application.properties
