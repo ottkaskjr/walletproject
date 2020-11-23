@@ -51,7 +51,7 @@ public class GameService {
      */
     /* ======= GET ======= */
     // GET PLAYER BY USERNAME
-    public Player getPlayerByUsername(String username){
+    public Player getPlayerByUsername(String username, boolean random){
         List<Player> playerList = gameRepository.getPlayerByUsername(username);
 
         // if player by provided username is not found return exception message
@@ -67,7 +67,7 @@ public class GameService {
 
         Player player = playerList.get(0);
         // start game session
-        startGame(player, configuration);
+        startGame(player, configuration, random);
 
         // return player at the end of the session
         return player;
@@ -107,7 +107,7 @@ public class GameService {
      *      "exit" ends player session
      *
      */
-    public void startGame(Player player, Configuration configuration){
+    public void startGame(Player player, Configuration configuration, boolean random){
         // PLAYER IN LOG
         System.out.println(ANSI_BLUE + "=== PLAYER " + player.getUsername() + " IN ===" + ANSI_RESET);
         // SET PERIODICAL UPDATE
@@ -119,17 +119,34 @@ public class GameService {
             }
         }, 1000, 5000);
 
-        // CREATE SCANNER
-        Scanner scanner = new Scanner(System.in);
-        gameInstructions(); // log game instructions
-        gameUI(player.getUsername(), player.getBalance()); // log player ui
-        String command = scanner.nextLine(); // wait user command
+        // if game is set to random transactions
+        if(random){
+            // CREATE SCANNER
+            System.out.println("GAME SET TO RANDOM");
+            gameUI(player.getUsername(), player.getBalance()); // log player ui
 
-        while(!command.equals("exit")){
-            handleCommand(command, player, configuration);
-            gameUI(player.getUsername(), player.getBalance());
-            command = scanner.nextLine();
+            String[] commands = {"add ", "play ", "exit"};
+
+            for(String command : commands){
+                int randomInt = (int) (Math.random() * 100.0);
+                System.out.println(command + randomInt);
+                handleCommand(command + randomInt, player, configuration);
+            }
+        } else { // MANUAL SESSION
+            // CREATE SCANNER
+            Scanner scanner = new Scanner(System.in);
+            gameInstructions(); // log game instructions
+            gameUI(player.getUsername(), player.getBalance()); // log player ui
+
+            String command = scanner.nextLine(); // wait user command
+
+            while(!command.equals("exit")){
+                handleCommand(command, player, configuration);
+                gameUI(player.getUsername(), player.getBalance());
+                command = scanner.nextLine();
+            }
         }
+
 
         System.out.println("Session over");
         // CANCEL TIMER

@@ -42,8 +42,9 @@ public class GameController {
     // GET PLAYER BY USERNAME AND START GAME SESSION
     /* localhost:8070/start?username=player1 */
     @GetMapping("/start")
-    public Player getPlayerByUsername(@RequestParam("username") String username){
-        return gameService.getPlayerByUsername(username);
+    public Player getPlayerByUsername(@RequestParam("username") String username,
+                                      @RequestParam("random") boolean random){
+        return gameService.getPlayerByUsername(username, random);
     }
 
 

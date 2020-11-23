@@ -1,3 +1,4 @@
+Running the application with docker:
 Open command prompt and navigate to docker folder located in project root directory. Run the following commands.
     1. "mvn clean package"
     2. "docker build . --tag ottkaskjr/playtech:0 -f Dockerfile"
@@ -7,7 +8,8 @@ Using the application:
     1. Use "localhost:8070/addnewplayer?username=:name" (POST) to create a new player either providing a username
         by param of json body
     2. Use "localhost:8070/start?username=:name" (GET) to start a game session and use application(intellij) log
-        to simulate the game session via Scanner input
+        to simulate the game session via Scanner input. NB! WHILE RUNNING FROM DOCKER IMAGE THE MANUAL INPUT CANNOT
+        BE USED.
 
 
 Changes or missing features:
