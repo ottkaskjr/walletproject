@@ -1,0 +1,16 @@
+com\company\controller\GameController.class
+com\company\Player.class
+com\company\exceptions\ApplicationException.class
+com\company\Transaction.class
+com\company\rowmappers\PlayerRowMapper.class
+com\company\Blacklist.class
+com\company\Configuration.class
+com\company\RequestJSON.class
+com\company\exceptions\ErrorRespone.class
+com\company\exceptions\GameExceptionHandler.class
+com\company\rowmappers\ConfigurationRowMapper.class
+com\company\repository\GameRepository.class
+com\company\service\GameService.class
+com\company\service\GameService$1.class
+com\company\Application.class
+com\company\rowmappers\BlacklistRowMapper.class
